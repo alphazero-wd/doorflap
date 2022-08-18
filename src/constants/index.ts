@@ -1,2 +1,6 @@
 export const DATABASE_URL = 'DATABASE_URL';
 export const NODE_ENV = 'NODE_ENV';
+export const JWT_ACCESS_SECRET = 'JWT_ACCESS_SECRET';
+export const JWT_ACCESS_EXP = 'JWT_ACCESS_EXP';
+export const JWT_REFRESH_SECRET = 'JWT_REFRESH_SECRET';
+export const JWT_REFRESH_EXP = 'JWT_REFRESH_EXP';
