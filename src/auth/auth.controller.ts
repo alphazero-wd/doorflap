@@ -27,15 +27,18 @@ export class AuthController {
   @HttpCode(200)
   @Post('login')
   async login(@Req() { user, res }: RequestUser) {
-    const accessToken = await this.authService.getAccessTokenCookie(user.id);
-    const { token: refreshToken } =
-      await this.authService.getRefreshTokenCookie(user.id);
-    res.setHeader('Set-Cookie', [accessToken, refreshToken]);
+    const accessTokenCookie = await this.authService.getAccessTokenCookie(
+      user.id,
+    );
+    const refreshTokenCookie = await this.authService.getRefreshTokenCookie(
+      user.id,
+    );
+    res.setHeader('Set-Cookie', [accessTokenCookie, refreshTokenCookie]);
     return user;
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('me')
+  @UseGuards(JwtAuthGuard)
   me(@Req() { user }: RequestUser) {
     return user;
   }
@@ -49,9 +52,13 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
   @Post('logout')
-  logout(@Req() { res }: RequestUser) {
-    res.setHeader('Set-Cookie', this.authService.getLogoutCookies());
+  async logout(@Req() { res, user }: RequestUser) {
+    res.setHeader(
+      'Set-Cookie',
+      await this.authService.getLogoutCookies(user.id),
+    );
     return { logout: true };
   }
 }

@@ -15,6 +15,7 @@ import {
   JWT_ACCESS_SECRET,
   JWT_REFRESH_EXP,
   JWT_REFRESH_SECRET,
+  NODE_ENV,
 } from '../constants';
 
 @Injectable()
@@ -32,7 +33,6 @@ export class AuthService {
         ...createUserDto,
         password: hashedPassoword,
       });
-      delete newUser.password;
       return newUser;
     } catch (error) {
       if (error?.code === PostgresErrorCodes.UniqueViolation) {
@@ -46,36 +46,43 @@ export class AuthService {
     const user = await this.usersService.findOneByEmail(email);
     const isCorrectPassword = await compare(password, user.password);
     if (!isCorrectPassword) throw new BadRequestException('wrong password');
-    delete user.password;
+    // delete user.password;
     return user;
   }
 
   async getAccessTokenCookie(id: number) {
+    const secure =
+      this.configService.get(NODE_ENV) === 'production' ? '; Secure' : '';
     const payload: TokenPayload = { sub: id };
     const expiresIn = this.configService.get(JWT_ACCESS_EXP);
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get(JWT_ACCESS_SECRET),
       expiresIn: `${expiresIn}s`,
     });
-    return `Access=${token}; HttpOnly; Path=/; Max-Age=${expiresIn}`;
+    return `Access=${token}; HttpOnly; Path=/; Max-Age=${expiresIn}${secure}`;
   }
 
   async getRefreshTokenCookie(id: number) {
+    const secure =
+      this.configService.get(NODE_ENV) === 'production' ? '; Secure' : '';
     const payload: TokenPayload = { sub: id };
     const expiresIn = this.configService.get(JWT_REFRESH_EXP);
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get(JWT_REFRESH_SECRET),
       expiresIn: `${expiresIn}s`,
     });
-    const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=${expiresIn}`;
+    const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=${expiresIn}${secure}`;
     await this.usersService.setRefreshToken(token, id);
-    return { token, cookie };
+    return cookie;
   }
 
-  getLogoutCookies() {
+  async getLogoutCookies(id: number) {
+    await this.usersService.removeRefreshToken(id);
+    const secure =
+      this.configService.get(NODE_ENV) === 'production' ? '; Secure' : '';
     return [
-      'Access=; HttpOnly; Path=/; Max-Age=0',
-      'Refresh=; HttpOnly; Path=/; MaxAge=0',
+      `Access=; HttpOnly; Path=/; Max-Age=0${secure}`,
+      `Refresh=; HttpOnly; Path=/; Max-Age=0${secure}`,
     ];
   }
 }
