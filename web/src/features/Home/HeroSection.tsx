@@ -25,21 +25,19 @@ export const HeroSection = () => (
     >
       <Box
         width={{ lg: "sm" }}
-        transform={{ base: "translateY(-50%)", lg: "none" }}
-        bg={{
-          base: "brand",
-          lg: "transparent",
-        }}
-        mx={{ base: "6", md: "8", lg: "0" }}
         px={{ base: "6", md: "8", lg: "0" }}
         py={{ base: "6", md: "8", lg: "12" }}
       >
         <Stack spacing={{ base: "4", lg: "5" }}>
           <Stack spacing={{ base: "2", lg: "4" }}>
-            <Heading size="xl" color={{ base: "gray.900", lg: "brand" }}>
+            <Heading size={{ base: "lg", lg: "xl" }} color="brand">
               SHOPAL
             </Heading>
-            <Heading lineHeight="1" size="lg" fontWeight="normal">
+            <Heading
+              lineHeight="1"
+              size={{ base: "md", lg: "lg" }}
+              fontWeight="normal"
+            >
               Save remarkable time buying and selling
             </Heading>
           </Stack>

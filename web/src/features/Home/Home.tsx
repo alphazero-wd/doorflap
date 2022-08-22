@@ -1,11 +1,11 @@
-import { Products } from "../common";
+import { FeatureProducts } from "./FeatureProducts";
 import { HeroSection } from "./HeroSection";
 
 export const Home = () => {
   return (
     <>
       <HeroSection />
-      <Products />
+      <FeatureProducts />
     </>
   );
 };

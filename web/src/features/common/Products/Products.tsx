@@ -1,18 +1,20 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { ProductCard } from "./ProductCard";
-import { products } from "./_data";
+import { Product } from "./_data";
 import { ProductGrid } from "./ProductGrid";
+import { FC } from "react";
 
-export const Products = () => (
+interface Props {
+  products: Product[];
+}
+
+export const Products: FC<Props> = ({ products }) => (
   <Box
     maxW="7xl"
     mx="auto"
     px={{ base: "4", md: "8", lg: "12" }}
     py={{ base: "6", md: "8", lg: "12" }}
   >
-    <Heading fontSize="4xl" textAlign="center" mb="8">
-      Featured products
-    </Heading>
     <ProductGrid>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
