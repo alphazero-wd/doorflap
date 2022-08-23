@@ -8,7 +8,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { Logo } from "../Logo";
+import { navLinks } from "../Navbar/navLinks";
+
+const footerLinks = [
+  ...navLinks.slice(1),
+  { to: "/privacy", text: "Privacy" },
+  { to: "/terms", text: "Terms" },
+  { to: "/license", text: "License" },
+];
 
 export const Footer = () => (
   <Container as="footer" role="contentinfo">
@@ -20,7 +29,7 @@ export const Footer = () => (
     >
       <Stack spacing={{ base: "6", md: "8" }} align="start">
         <Logo />
-        <Text color="muted">Save remarkable time buying and selling</Text>
+        <Text color="muted">Design Your Comfort Zone</Text>
       </Stack>
       <Stack
         direction={{ base: "column-reverse", md: "column", lg: "row" }}
@@ -32,9 +41,11 @@ export const Footer = () => (
               Main
             </Text>
             <Stack spacing="3" shouldWrapChildren>
-              <Button variant="link">Home</Button>
-              <Button variant="link">About</Button>
-              <Button variant="link">Products</Button>
+              {footerLinks.slice(0, 3).map((link) => (
+                <Button variant="link" as={Link} to={link.to} key={link.to}>
+                  {link.text}
+                </Button>
+              ))}
             </Stack>
           </Stack>
           <Stack spacing="4" minW="36" flex="1">
@@ -42,9 +53,11 @@ export const Footer = () => (
               Legal
             </Text>
             <Stack spacing="3" shouldWrapChildren>
-              <Button variant="link">Privacy</Button>
-              <Button variant="link">Terms</Button>
-              <Button variant="link">License</Button>
+              {footerLinks.slice(3).map((link) => (
+                <Button variant="link" as={Link} key={link.to} to={link.to}>
+                  {link.text}
+                </Button>
+              ))}
             </Stack>
           </Stack>
         </Stack>
@@ -79,7 +92,7 @@ export const Footer = () => (
     <Divider />
     <Stack pt="8" pb="12" align="center">
       <Text fontSize="sm" color="subtle">
-        &copy; {new Date().getFullYear()} Shopal, Inc. All rights reserved.
+        &copy; {new Date().getFullYear()} Inferior, Inc. All rights reserved.
       </Text>
     </Stack>
   </Container>

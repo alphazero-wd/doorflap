@@ -30,25 +30,22 @@ export const HeroSection = () => (
       >
         <Stack spacing={{ base: "4", lg: "5" }}>
           <Stack spacing={{ base: "2", lg: "4" }}>
-            <Heading size={{ base: "lg", lg: "xl" }} color="brand">
-              SHOPAL
+            <Heading size="xl" color="brand">
+              Inferior
             </Heading>
-            <Heading
-              lineHeight="1"
-              size={{ base: "md", lg: "lg" }}
-              fontWeight="normal"
-            >
-              Save remarkable time buying and selling
+            <Heading lineHeight="1" size="md" fontWeight="normal">
+              Design Your Comfort Zone
             </Heading>
           </Stack>
           <Text>
-            Enjoy buying and selling products online via Shopal. User-friendly
-            interface with simplicity allow user to buy and sell things with
-            ease.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+            maiores, est quo voluptate tenetur sit earum cum ullam? Minima
+            repellendus ratione praesentium sint odit mollitia suscipit delectus
+            dolores consequuntur laboriosam?
           </Text>
           <HStack color="brand" fontWeight="bold" fontSize="lg" spacing="3">
             <Text as={Link} _hover={{ opacity: 0.75 }} to="/signup">
-              Discover now
+              Shop now
             </Text>
             <Icon color="brand" as={FaArrowRight} />
           </HStack>
@@ -56,21 +53,21 @@ export const HeroSection = () => (
       </Box>
       <Flex flex="1" overflow="hidden">
         <Image
-          src="https://images.unsplash.com/photo-1574634534894-89d7576c8259?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+          display={{ base: "none", sm: "initial" }}
+          src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGludGVyaW9yfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          alt="Lovely Image"
+          fallback={<Skeleton />}
+          maxH="450px"
+          objectFit="cover"
+        />
+        <Image
+          src="https://images.unsplash.com/photo-1600210491369-e753d80a41f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGludGVyaW9yfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
           alt="Lovely Image"
           fallback={<Skeleton />}
           maxH="450px"
           minW="300px"
           objectFit="cover"
           flex="1"
-        />
-        <Image
-          display={{ base: "none", sm: "initial" }}
-          src="https://images.unsplash.com/photo-1576072446584-4955dfe17b86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          alt="Lovely Image"
-          fallback={<Skeleton />}
-          maxH="450px"
-          objectFit="cover"
         />
       </Flex>
     </Stack>

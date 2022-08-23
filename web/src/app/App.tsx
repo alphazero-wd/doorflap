@@ -6,6 +6,7 @@ import {
   Login,
   Navbar,
   ProductDetail,
+  ProductsPage,
   Signup,
 } from "../features";
 
@@ -18,6 +19,7 @@ export const App = () => (
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/products" element={<ProductsPage />} />
     </Routes>
     <Footer />
   </BrowserRouter>

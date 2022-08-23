@@ -31,7 +31,7 @@ export const Login = () => {
           <Logo />
           <Stack spacing={{ base: "2", md: "3" }} textAlign="center">
             <Heading size={useBreakpointValue({ base: "xs", md: "sm" })}>
-              Log in to Shopal
+              Log in to Interior
             </Heading>
             <HStack spacing="1" justify="center">
               <Text color="muted">Don't have an account?</Text>

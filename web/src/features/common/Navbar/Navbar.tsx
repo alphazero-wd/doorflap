@@ -14,6 +14,8 @@ import { FiMenu } from "react-icons/fi";
 import { navLinks } from "./navLinks";
 import { Link } from "react-router-dom";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
+import { NavButtonGroup } from "./NavButtonGroup";
+import { NavMenu } from "./NavMenu";
 
 export const Navbar = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
@@ -28,12 +30,10 @@ export const Navbar = () => {
       <Box as="nav" bg="bg-surface">
         <Container maxW="container.xl" py={{ base: "4", lg: "5" }}>
           <HStack spacing="10" justify="space-between">
-            <Logo />
-            <Flex
-              display={{ base: "none", lg: "flex" }}
-              justify="space-between"
-              flex="1"
-            >
+            <Link to="/">
+              <Logo />
+            </Link>
+            <Flex justify={{ base: "flex-end", lg: "space-between" }} flex="1">
               <HStack display={{ base: "none", lg: "flex" }} spacing="8">
                 {navLinks.map((item) => (
                   <Button
@@ -45,24 +45,12 @@ export const Navbar = () => {
                   </Button>
                 ))}
               </HStack>
-              <HStack spacing="3">
-                <Button variant="ghost">
-                  <Link to="/login">Log in</Link>
-                </Button>
-                <Button _hover={{ opacity: 0.75 }} bg="brand" variant="primary">
-                  <Link to="/signup">Sign up</Link>
-                </Button>
-              </HStack>
+              <ButtonGroup>
+                <ColorModeSwitcher />
+                {isDesktop && <NavButtonGroup />}
+                {!isDesktop && <NavMenu />}
+              </ButtonGroup>
             </Flex>
-            <ButtonGroup>
-              <ColorModeSwitcher />
-              <IconButton
-                display={{ base: "flex", lg: "none" }}
-                variant="ghost"
-                icon={<FiMenu fontSize="1.25rem" />}
-                aria-label="Open Menu"
-              />
-            </ButtonGroup>
           </HStack>
         </Container>
       </Box>

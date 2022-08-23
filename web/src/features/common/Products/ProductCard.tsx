@@ -23,7 +23,7 @@ interface Props {
 
 export const ProductCard = (props: Props) => {
   const { product, rootProps } = props;
-  const { name, imageUrl, price, salePrice, rating } = product;
+  const { name, imageUrl, price, rating } = product;
   return (
     <Stack spacing={useBreakpointValue({ base: "4", md: "5" })} {...rootProps}>
       <Box position="relative">
@@ -45,7 +45,7 @@ export const ProductCard = (props: Props) => {
           >
             {name}
           </Text>
-          <PriceTag price={price} salePrice={salePrice} currency="USD" />
+          <PriceTag price={price} currency="USD" />
         </Stack>
         <HStack>
           <Rating defaultValue={rating} size="sm" />
