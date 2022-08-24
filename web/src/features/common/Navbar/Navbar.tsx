@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
 import { NavButtonGroup } from "./NavButtonGroup";
 import { NavMenu } from "./NavMenu";
+import { CartIcon } from "./CartIcon";
 
 export const Navbar = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
@@ -45,6 +46,7 @@ export const Navbar = () => {
               </HStack>
               <ButtonGroup>
                 <ColorModeSwitcher />
+                <CartIcon />
                 <Box display={{ base: "none", lg: "block" }}>
                   <NavButtonGroup />
                 </Box>
