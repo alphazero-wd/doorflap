@@ -1,10 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  About,
   Banner,
   Footer,
   Home,
   Login,
   Navbar,
+  NotFound,
   ProductDetail,
   ProductsPage,
   Signup,
@@ -20,6 +22,8 @@ export const App = () => (
       <Route path="/login" element={<Login />} />
       <Route path="/products/:id" element={<ProductDetail />} />
       <Route path="/products" element={<ProductsPage />} />
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
     <Footer />
   </BrowserRouter>

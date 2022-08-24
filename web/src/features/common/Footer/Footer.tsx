@@ -13,7 +13,7 @@ import { Logo } from "../Logo";
 import { navLinks } from "../Navbar/navLinks";
 
 const footerLinks = [
-  ...navLinks.slice(1),
+  ...navLinks,
   { to: "/privacy", text: "Privacy" },
   { to: "/terms", text: "Terms" },
   { to: "/license", text: "License" },

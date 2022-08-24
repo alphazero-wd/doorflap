@@ -6,11 +6,9 @@ import {
   HStack,
   Flex,
   Button,
-  IconButton,
   ButtonGroup,
 } from "@chakra-ui/react";
 import { Logo } from "../Logo";
-import { FiMenu } from "react-icons/fi";
 import { navLinks } from "./navLinks";
 import { Link } from "react-router-dom";
 import { ColorModeSwitcher } from "../ColorModeSwitcher";
@@ -47,7 +45,9 @@ export const Navbar = () => {
               </HStack>
               <ButtonGroup>
                 <ColorModeSwitcher />
-                {isDesktop && <NavButtonGroup />}
+                <Box display={{ base: "none", lg: "block" }}>
+                  <NavButtonGroup />
+                </Box>
                 {!isDesktop && <NavMenu />}
               </ButtonGroup>
             </Flex>
